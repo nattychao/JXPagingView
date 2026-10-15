@@ -72,6 +72,8 @@
  */
 - (Class)scrollViewClassInlistContainerViewInPagerView:(JXPagerView *)pagerView;
 
+- (UICollectionViewFlowLayout *)collectionViewFlowLayoutClassInlistContainerViewInPagerView:(JXPagerView *)pagerView;
+
 @end
 
 @interface JXPagerView : UIView

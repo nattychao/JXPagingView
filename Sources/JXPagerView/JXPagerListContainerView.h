@@ -86,6 +86,8 @@ typedef NS_ENUM(NSUInteger, JXPagerListContainerType) {
  */
 - (Class)scrollViewClassInlistContainerView:(JXPagerListContainerView *)listContainerView;
 
+- (UICollectionViewFlowLayout *)collectionViewFlowLayoutClassInlistContainerView:(JXPagerListContainerView *)listContainerView;
+
 /**
  控制能否初始化对应index的列表。有些业务需求，需要在某些情况才允许初始化某些列表，通过通过该代理实现控制。
  */

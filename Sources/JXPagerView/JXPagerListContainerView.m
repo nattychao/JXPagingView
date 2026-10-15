@@ -159,9 +159,18 @@
         [self.containerVC.view addSubview:self.scrollView];
     }else {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        if (self.delegate &&
+            [self.delegate respondsToSelector:@selector(collectionViewFlowLayoutClassInlistContainerView:)] &&
+            [[self.delegate collectionViewFlowLayoutClassInlistContainerView:self] isKindOfClass:[UICollectionViewFlowLayout class]]) {
+            layout = [self.delegate collectionViewFlowLayoutClassInlistContainerView:self];
+        }else{
+            layout = [[UICollectionViewFlowLayout alloc] init];
+        }
+        
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
+        
         if (self.delegate &&
             [self.delegate respondsToSelector:@selector(scrollViewClassInlistContainerView:)] &&
             [[self.delegate scrollViewClassInlistContainerView:self] isKindOfClass:object_getClass([UICollectionView class])]) {

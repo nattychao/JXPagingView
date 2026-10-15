@@ -149,6 +149,8 @@
     NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:tableHeaderView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:containerView attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
     [containerView addConstraints:@[top, leading, bottom, trailing]];
     self.tableHeaderContainerView = containerView;
+    //这个时候mainTableView.tableHeaderView的宽度为0，containerView内的所有布局都会报约束冲突
+    self.mainTableView.frame = self.bounds;
     self.mainTableView.tableHeaderView = containerView;
 }
 
@@ -333,6 +335,13 @@
 - (Class)scrollViewClassInlistContainerView:(JXPagerListContainerView *)listContainerView {
     if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewClassInlistContainerViewInPagerView:)]) {
         return [self.delegate scrollViewClassInlistContainerViewInPagerView:self];
+    }
+    return nil;
+}
+
+- (UICollectionViewFlowLayout *)collectionViewFlowLayoutClassInlistContainerView:(JXPagerListContainerView *)listContainerView {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(collectionViewFlowLayoutClassInlistContainerViewInPagerView:)]) {
+        return [self.delegate collectionViewFlowLayoutClassInlistContainerViewInPagerView:self];
     }
     return nil;
 }
